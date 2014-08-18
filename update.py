@@ -2,7 +2,7 @@ import os
 import etcd
 import pystache
 import boto.route53.connection
-import urllib3.exceptions.ReadTimeoutError
+import urllib3.exceptions
 
 HOST = os.environ.get('HOST', '127.0.0.1')
 PUBLIC_IP = os.environ.get('PUBLIC_IP')
