@@ -51,7 +51,7 @@ def publish(entry):
    }
 
    nginx_template = nginx_template.replace('.', '').replace('/', '')
-   template = file('templates/%s.tmpl' % nginx_template, 'r').read()
+   template = file('/scripts/templates/%s.tmpl' % nginx_template, 'r').read()
    rendered = pystache.render(template, data)
 
    nginx_file = file('/etc/nginx/sites-enabled/%s.conf' % service, 'w')
