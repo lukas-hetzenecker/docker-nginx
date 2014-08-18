@@ -18,7 +18,7 @@ RUN rm -f /etc/nginx/sites-enabled/default
 
 # Add update script
 ADD ./update.py /scripts/update.py
-ADD ./templates /scripts/
+ADD ./templates /scripts/templates
 
 # Run the boot script
 CMD ["/usr/bin/python", "/scripts/update.py"]
