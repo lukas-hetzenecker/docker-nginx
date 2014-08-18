@@ -6,11 +6,12 @@ RUN apt-get update
 # Install Nginx
 RUN apt-get install -y --force-yes nginx
 
-# Install python-etcd and pystache
+# Install python packages
 RUN apt-get install -y --force-yes python python-dev python-pip 
 RUN apt-get install -y --force-yes libssl-dev libffi-dev
 RUN pip install python-etcd
 RUN pip install pystache
+RUN pip install boto
 
 # Remove default site
 RUN rm -f /etc/nginx/sites-enabled/default
