@@ -2,6 +2,7 @@ import os
 import etcd
 import pystache
 import boto.route53.connection
+import urllib3.exceptions.ReadTimeoutError
 
 HOST = os.environ.get('HOST', '127.0.0.1')
 PUBLIC_IP = os.environ.get('PUBLIC_IP')
@@ -98,8 +99,13 @@ except KeyError:
    pass
 
 while True:
-   entry = etcd_client.read("/publish", recursive=True, wait=True, timeout=0)
+   try:
+      entry = etcd_client.read("/publish", recursive=True, wait=True, timeout=0)
+   except urllib3.exceptions.ReadTimeoutError:
+      continue
+
    if entry.action == 'set':
       publish(entry)
    elif entry.action == 'delete':
       unpublish(entry)
+
