@@ -41,7 +41,7 @@ def publish(entry):
       return
 
    try:
-      nginx_template = etcd_client.get('/services/%s/nginx_template' % service)
+      nginx_template = etcd_client.get('/services/%s/nginx_template' % service).value
    except KeyError as e:
       nginx_template = 'default'
 
