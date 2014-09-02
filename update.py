@@ -46,7 +46,7 @@ def publish(entry):
       nginx_template = 'default'
 
    try:
-      nginx_protocol = etcd_client.get('/services/%s/nginx_protocol' % service)
+      nginx_protocol = etcd_client.get('/services/%s/nginx_protocol' % service).value
    except KeyError as e:
       nginx_protocol = 'http'
 
