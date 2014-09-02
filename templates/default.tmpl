@@ -11,7 +11,7 @@ server {
     error_log /var/log/nginx/{{ server_name }}.error.log;
 
     location / {
-      proxy_pass http://{{ name }}_server;
+      proxy_pass {{ protocol }}://{{ name }}_server;
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header Host $host;

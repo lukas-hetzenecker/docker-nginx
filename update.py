@@ -45,8 +45,14 @@ def publish(entry):
    except KeyError as e:
       nginx_template = 'default'
 
+   try:
+      nginx_protocol = etcd_client.get('/services/%s/nginx_protocol' % service)
+   except KeyError as e:
+      nginx_protocol = 'http'
+
    data = {
       'name': service,
+      'protocol': nginx_protocol,
       'upstream': service_host + ':' + service_port,
       'server_name': name + '.' + DOMAIN
    }
