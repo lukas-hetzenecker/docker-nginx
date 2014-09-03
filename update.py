@@ -107,7 +107,7 @@ except KeyError:
 while True:
    try:
       entry = etcd_client.read("/publish", recursive=True, wait=True, timeout=0)
-   except urllib3.exceptions.ReadTimeoutError:
+   except (urllib3.exceptions.ReadTimeoutError, etcd.EtcdException):
       continue
 
    if entry.action == 'set':
