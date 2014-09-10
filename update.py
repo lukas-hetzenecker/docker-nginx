@@ -50,11 +50,17 @@ def publish(entry):
    except KeyError as e:
       nginx_protocol = 'http'
 
+   try:
+      enable_socketio = bool(etcd_client.get('/services/%s/nginx_enable_socketio' % service).value)
+   except KeyError as e:
+      enable_socketio = False
+
    data = {
       'name': service,
       'protocol': nginx_protocol,
       'upstream': service_host + ':' + service_port,
-      'server_name': name + '.' + DOMAIN
+      'server_name': name + '.' + DOMAIN,
+      'socketio': enable_socketio
    }
 
    nginx_template = nginx_template.replace('.', '').replace('/', '')
