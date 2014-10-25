@@ -30,7 +30,7 @@ def publish(entry):
    service = entry.key.split('/')[-1]
    name = entry.value
    servername = name + '.' + DOMAIN
-   if servername == '-':
+   if servername == '':
       servername = DOMAIN
 
    print "Publishing service '%s'..." % service
