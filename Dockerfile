@@ -1,10 +1,7 @@
-FROM ubuntu:14.04
+FROM h3nrik/nginx-ldap:latest
 MAINTAINER Lukas Hetzenecker <lukas.hetzenecker@gmail.com>
 
 RUN apt-get update
-
-# Install Nginx
-RUN apt-get install -y --force-yes nginx
 
 # Install python packages
 RUN apt-get install -y --force-yes python python-dev python-pip 
