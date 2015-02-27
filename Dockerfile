@@ -2,7 +2,7 @@ FROM xdrum/nginx-extras:stable
 MAINTAINER Lukas Hetzenecker <lukas.hetzenecker@gmail.com>
 
 RUN apt-get update
-TUN apt-get install libpam-ldap nscd
+TUN apt-get install -y --force-yes libpam-ldap nscd
 
 # Install python packages
 RUN apt-get install -y --force-yes python python-dev python-pip 
