@@ -1,4 +1,4 @@
-FROM xdrum/nginx-extras:latest
+FROM xdrum/nginx-extras:stable
 MAINTAINER Lukas Hetzenecker <lukas.hetzenecker@gmail.com>
 
 RUN apt-get update
