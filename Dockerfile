@@ -1,4 +1,4 @@
-FROM servicerocket/saddlebred-nginx-auth-ldap:latest
+FROM xdrum/nginx-extras:latest
 MAINTAINER Lukas Hetzenecker <lukas.hetzenecker@gmail.com>
 
 RUN apt-get update
