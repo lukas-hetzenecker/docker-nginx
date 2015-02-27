@@ -1,4 +1,4 @@
-FROM h3nrik/nginx-ldap:latest
+FROM servicerocket/saddlebred-nginx-auth-ldap:latest
 MAINTAINER Lukas Hetzenecker <lukas.hetzenecker@gmail.com>
 
 RUN apt-get update
