@@ -2,6 +2,7 @@ FROM xdrum/nginx-extras:stable
 MAINTAINER Lukas Hetzenecker <lukas.hetzenecker@gmail.com>
 
 RUN apt-get update
+TUN apt-get install libpam-ldapd
 
 # Install python packages
 RUN apt-get install -y --force-yes python python-dev python-pip 
@@ -12,6 +13,8 @@ RUN pip install boto
 
 # Remove default site
 RUN rm -f /etc/nginx/sites-enabled/default
+
+RUN mkdir /conf
 
 # Add update script
 ADD ./update.py /scripts/update.py
