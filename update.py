@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 assert DOMAIN
 
-os.system('service nginx start')
+os.system('nginx')
 
 etcd_client = etcd.Client(host=HOST)
 if ACCESS_KEY and SECRET_KEY:
@@ -21,7 +21,7 @@ if ACCESS_KEY and SECRET_KEY:
    route53_zone = route53_client.get_zone(DOMAIN)
 
 def reload():
-   os.system('service nginx reload')
+   os.system('nginx -s reload')
 
 def publish(entry):
    if entry.dir:
