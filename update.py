@@ -38,23 +38,23 @@ def publish(entry):
    try:
       service_host = etcd_client.get('/services/%s/host' % service).value
       service_port = etcd_client.get('/services/%s/port' % service).value
-   except KeyError as e:
+   except etcd.EtcdKeyNotFound as e:
       print "Could not publish '%s': %s" % (service, e)
       return
 
    try:
       nginx_template = etcd_client.get('/services/%s/nginx_template' % service).value
-   except KeyError as e:
+   except etcd.EtcdKeyNotFound as e:
       nginx_template = 'default'
 
    try:
       nginx_protocol = etcd_client.get('/services/%s/nginx_protocol' % service).value
-   except KeyError as e:
+   except etcd.EtcdKeyNotFound as e:
       nginx_protocol = 'http'
 
    try:
       enable_socketio = bool(etcd_client.get('/services/%s/nginx_enable_socketio' % service).value)
-   except KeyError as e:
+   except etcd.EtcdKeyNotFound as e:
       enable_socketio = False
 
    data = {
@@ -114,7 +114,7 @@ def unpublish(entry):
 try:
    to_publish = etcd_client.read('/publish')
    map(publish, to_publish.children)
-except KeyError:
+except etcd.EtcdKeyNotFound:
    pass
 
 while True:
